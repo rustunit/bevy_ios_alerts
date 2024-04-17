@@ -16,7 +16,7 @@ demo from our game using this crate: [zoolitaire.com](https://zoolitaire.com)
 
 ### 1. Add to XCode
 
-Go to `File` -> `Add Package Dependencies` and paste `https://github.com/rustunit/bevy_ios_alert.git` into the search bar on the top right:
+Go to `File` -> `Add Package Dependencies` and paste `https://github.com/rustunit/bevy_ios_alerts.git` into the search bar on the top right:
 ![xcode](./assets/xcode-spm.png)
 
 ### 2. Add Rust dependency
