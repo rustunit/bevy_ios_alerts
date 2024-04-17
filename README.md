@@ -42,7 +42,7 @@ app.add_plugins(bevy_ios_alerts::IosAlertsPlugin);
 Trigger Alert in your application code:
 
 ```rust
-fn some_system(mut events: EventWriter<IosAlert>) {
+fn system_triggerin_alerts(mut events: EventWriter<IosAlert>) {
      
     events.send(IosAlert::Message {
         title: String::from("title"),
@@ -63,5 +63,11 @@ fn some_system(mut events: EventWriter<IosAlert>) {
         button: String::from("ok"),
         placeholder: String::from("placeholder"),
     });
+}
+
+fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
+    for e in events.read() {
+        info!("incoming alert response: {e:?}");
+    }
 }
 ```
