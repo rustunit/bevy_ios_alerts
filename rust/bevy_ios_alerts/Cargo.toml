@@ -12,4 +12,6 @@ description = "Bevy plugin to request ios native UIAlert popups"
 
 [dependencies]
 bevy = { version = "0.13", default-features = false }
+
+[target.'cfg(target_os = "ios")'.dependencies]
 bevy_crossbeam_event = "0.5"

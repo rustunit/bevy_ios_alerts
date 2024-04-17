@@ -1,10 +1,8 @@
 mod native;
+
 mod native_events;
 
 use bevy::prelude::*;
-
-use bevy_crossbeam_event::{CrossbeamEventApp, CrossbeamEventSender};
-use native_events::set_sender;
 
 pub use native_events::IosAlertResponse;
 
@@ -39,16 +37,22 @@ impl Plugin for IosAlertsPlugin {
     fn build(&self, app: &mut App) {
         app.add_event::<IosAlert>()
             .init_non_send_resource::<NonSendRes>()
-            .add_crossbeam_event::<IosAlertResponse>()
             .add_systems(Update, process_events.run_if(on_event::<IosAlert>()));
 
-        let sender = app
-            .world
-            .get_resource::<CrossbeamEventSender<IosAlertResponse>>()
-            .unwrap()
-            .clone();
+        #[cfg(target_os = "ios")]
+        {
+            use bevy_crossbeam_event::{CrossbeamEventApp, CrossbeamEventSender};
 
-        set_sender(sender);
+            app.add_crossbeam_event::<IosAlertResponse>();
+
+            let sender = app
+                .world
+                .get_resource::<CrossbeamEventSender<IosAlertResponse>>()
+                .unwrap()
+                .clone();
+
+            native_events::set_sender(sender);
+        }
     }
 }
 

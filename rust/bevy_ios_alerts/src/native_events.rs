@@ -1,9 +1,12 @@
+#[cfg(target_os = "ios")]
 use std::{
     ffi::{c_char, c_uchar, CStr},
     sync::OnceLock,
 };
 
 use bevy::prelude::*;
+
+#[cfg(target_os = "ios")]
 use bevy_crossbeam_event::CrossbeamEventSender;
 
 #[derive(Clone, Debug)]
@@ -19,12 +22,15 @@ pub enum IosAlertResponse {
     Input(String),
 }
 
+#[cfg(target_os = "ios")]
 static SENDER: OnceLock<Option<CrossbeamEventSender<IosAlertResponse>>> = OnceLock::new();
 
+#[cfg(target_os = "ios")]
 pub fn set_sender(sender: CrossbeamEventSender<IosAlertResponse>) {
     while !SENDER.set(Some(sender.clone())).is_ok() {}
 }
 
+#[cfg(target_os = "ios")]
 #[no_mangle]
 pub unsafe extern "C" fn popup_message_click() {
     SENDER
@@ -34,6 +40,8 @@ pub unsafe extern "C" fn popup_message_click() {
         .unwrap()
         .send(IosAlertResponse::MessageConfirm);
 }
+
+#[cfg(target_os = "ios")]
 #[no_mangle]
 pub unsafe extern "C" fn popup_dialog_click(button: c_uchar) {
     SENDER
@@ -48,6 +56,7 @@ pub unsafe extern "C" fn popup_dialog_click(button: c_uchar) {
         }));
 }
 
+#[cfg(target_os = "ios")]
 #[no_mangle]
 pub unsafe extern "C" fn popup_input_click(text: *const c_char) {
     SENDER
