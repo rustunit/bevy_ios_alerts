@@ -39,6 +39,11 @@ impl Plugin for IosAlertsPlugin {
             .init_non_send_resource::<NonSendRes>()
             .add_systems(Update, process_events.run_if(on_event::<IosAlert>()));
 
+        #[cfg(not(target_os = "ios"))]
+        {
+            app.add_event::<IosAlertResponse>();
+        }
+
         #[cfg(target_os = "ios")]
         {
             use bevy_crossbeam_event::{CrossbeamEventApp, CrossbeamEventSender};
