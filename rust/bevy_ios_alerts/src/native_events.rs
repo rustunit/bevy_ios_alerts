@@ -1,0 +1,61 @@
+use std::{
+    ffi::{c_char, c_uchar, CStr},
+    sync::OnceLock,
+};
+
+use bevy::prelude::*;
+use bevy_crossbeam_event::CrossbeamEventSender;
+
+#[derive(Clone, Debug)]
+pub enum IosAlertDialogButton {
+    Yes,
+    No,
+}
+
+#[derive(Event, Clone, Debug)]
+pub enum IosAlertResponse {
+    MessageConfirm,
+    Dialog(IosAlertDialogButton),
+    Input(String),
+}
+
+static SENDER: OnceLock<Option<CrossbeamEventSender<IosAlertResponse>>> = OnceLock::new();
+
+pub fn set_sender(sender: CrossbeamEventSender<IosAlertResponse>) {
+    while !SENDER.set(Some(sender.clone())).is_ok() {}
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn popup_message_click() {
+    SENDER
+        .get()
+        .unwrap()
+        .as_ref()
+        .unwrap()
+        .send(IosAlertResponse::MessageConfirm);
+}
+#[no_mangle]
+pub unsafe extern "C" fn popup_dialog_click(button: c_uchar) {
+    SENDER
+        .get()
+        .unwrap()
+        .as_ref()
+        .unwrap()
+        .send(IosAlertResponse::Dialog(if button == 0 {
+            IosAlertDialogButton::Yes
+        } else {
+            IosAlertDialogButton::No
+        }));
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn popup_input_click(text: *const c_char) {
+    SENDER
+        .get()
+        .unwrap()
+        .as_ref()
+        .unwrap()
+        .send(IosAlertResponse::Input(
+            CStr::from_ptr(text).to_str().unwrap().to_string(),
+        ));
+}

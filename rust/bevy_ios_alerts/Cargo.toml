@@ -1,0 +1,15 @@
+[package]
+name = "bevy_ios_alerts"
+version = "0.1.0"
+edition = "2021"
+readme = "../../README.md"
+license = "MIT"
+authors = ["extrawurst <mail@rusticorn.com>"]
+documentation = "https://docs.rs/bevy_ios_alerts"
+repository = "https://github.com/rustunit/bevy_ios_alerts"
+keywords = ["bevy", "gamedev", "mobile", "ios", "swift"]
+description = "Bevy plugin to request ios native UIAlert popups"
+
+[dependencies]
+bevy = { version = "0.13", default-features = false }
+bevy_crossbeam_event = "0.5"
