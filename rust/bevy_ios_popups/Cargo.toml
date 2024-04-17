@@ -1,0 +1,15 @@
+[package]
+name = "bevy_ios_popups"
+version = "0.1.0"
+edition = "2021"
+readme = "../../README.md"
+license = "MIT"
+authors = ["extrawurst <mail@rusticorn.com>"]
+documentation = "https://docs.rs/bevy_ios_popups"
+repository = "https://github.com/rustunit/bevy_ios_popups"
+keywords = ["bevy", "gamedev", "mobile", "ios", "swift"]
+description = "Bevy plugin to request ios native popups"
+
+[dependencies]
+bevy = { version = "0.13", default-features = false, features = ["bevy_winit"] }
+bevy_crossbeam_event = "0.5"
