@@ -14,15 +14,13 @@ static UIAlertController* _currentAllert = nil;
     }
 }
 + (void) showDialog: (NSString *) title message: (NSString*) msg yesTitle:(NSString*) b1 noTitle: (NSString*) b2{
-    [PopupsManager dismissCurrentAlert];
-
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    [PopupsManager unregisterAllertView];
+        [PopupsManager unregisterAllertView];
         popup_dialog_click(0);
     }];
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:b2 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    [PopupsManager unregisterAllertView];
+        [PopupsManager unregisterAllertView];
         popup_dialog_click(1);
     }];
     [alertController addAction:yesAction];
@@ -34,11 +32,9 @@ static UIAlertController* _currentAllert = nil;
 }
 
 +(void)showMessage: (NSString *) title message: (NSString*) msg okTitle:(NSString*) b1 {
-    [PopupsManager dismissCurrentAlert];
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    [PopupsManager unregisterAllertView];
+        [PopupsManager unregisterAllertView];
         popup_message_click();
     }];
     [alertController addAction:okAction];
@@ -49,8 +45,6 @@ static UIAlertController* _currentAllert = nil;
 }
 
 +(void)showInput: (NSString *) title message: (NSString*) msg okTitle:(NSString*) b1 placeholder:(NSString*) placeholder {
-    [PopupsManager dismissCurrentAlert];
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [PopupsManager unregisterAllertView];
@@ -75,7 +69,7 @@ void ios_popup_dialog(char* title, char* message, char* yes, char* no) {
     NSString *ns_yes = [NSString stringWithUTF8String:yes];
     NSString *ns_no = [NSString stringWithUTF8String:no];
     
-     [PopupsManager showDialog:ns_title message:ns_msg yesTitle:ns_yes noTitle:ns_no];
+    [PopupsManager showDialog:ns_title message:ns_msg yesTitle:ns_yes noTitle:ns_no];
 }
 void ios_popup_message(char* title, char* message, char* ok) {
     NSString *ns_title = [NSString stringWithUTF8String:title];
