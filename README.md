@@ -30,7 +30,7 @@ cargo add bevy_ios_alerts
 or 
 
 ```
-bevy_ios_alerts = { version = "0.1" }
+bevy_ios_alerts = { version = "=0.1.3" }
 ```
 
 ### 3. Setup Plugin
