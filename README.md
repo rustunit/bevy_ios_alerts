@@ -30,7 +30,7 @@ cargo add bevy_ios_alerts
 or 
 
 ```
-bevy_ios_alerts = { version = "=0.1.3" }
+bevy_ios_alerts = { version = "0.2" }
 ```
 
 ### 3. Setup Plugin
@@ -73,6 +73,13 @@ fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
     }
 }
 ```
+
+## Bevy version support
+
+|bevy|bevy\_ios\_alerts|
+|----|---|
+|0.14|0.2,main|
+|0.13|0.1|
 
 # License
 

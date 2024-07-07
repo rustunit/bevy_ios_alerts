@@ -51,7 +51,7 @@ impl Plugin for IosAlertsPlugin {
             app.add_crossbeam_event::<IosAlertResponse>();
 
             let sender = app
-                .world
+                .world()
                 .get_resource::<CrossbeamEventSender<IosAlertResponse>>()
                 .unwrap()
                 .clone();
