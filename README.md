@@ -1,6 +1,15 @@
 # bevy_ios_alerts
 
-[![crates.io](https://img.shields.io/crates/v/bevy_ios_alerts.svg)](https://crates.io/crates/bevy_ios_alerts)
+[![crates.io][sh_crates]][lk_crates]
+[![docs.rs][sh_docs]][lk_docs]
+[![discord][sh_discord]][lk_discord]
+
+[sh_crates]: https://img.shields.io/crates/v/bevy_ios_alerts.svg
+[lk_crates]: https://crates.io/crates/bevy_ios_alerts
+[sh_docs]: https://img.shields.io/docsrs/bevy_ios_alerts
+[lk_docs]: https://docs.rs/bevy_ios_alerts/latest/bevy_ios_alerts/
+[sh_discord]: https://img.shields.io/discord/1176858176897953872?label=discord&color=5561E6
+[lk_discord]: https://discord.gg/rQNeEnMhus
 
 Rust crate and Swift package to easily integrate iOS's native UIAlerts API into a Bevy application.
 
