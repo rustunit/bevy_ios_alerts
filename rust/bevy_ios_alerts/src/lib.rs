@@ -37,7 +37,7 @@ impl Plugin for IosAlertsPlugin {
     fn build(&self, app: &mut App) {
         app.add_event::<IosAlert>()
             .init_non_send_resource::<NonSendRes>()
-            .add_systems(Update, process_events.run_if(on_event::<IosAlert>()));
+            .add_systems(Update, process_events.run_if(on_event::<IosAlert>));
 
         #[cfg(not(target_os = "ios"))]
         {
