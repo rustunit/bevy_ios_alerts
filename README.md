@@ -99,7 +99,7 @@ fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
 
 |bevy|bevy\_ios\_alerts|
 |----|---|
-|0.14|0.3,main|
+|0.15|0.3,main|
 |0.14|0.2|
 |0.13|0.1|
 
