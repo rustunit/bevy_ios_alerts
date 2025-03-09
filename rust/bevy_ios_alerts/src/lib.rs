@@ -64,19 +64,19 @@ impl Plugin for IosAlertsPlugin {
 fn process_events(mut events: EventReader<IosAlert>, _main_thread: NonSend<NonSendRes>) {
     while let Some(e) = events.read().next() {
         match e {
-            IosAlert::Message { msg, title, button } => native::popup_msg(msg, title, button),
+            IosAlert::Message { msg, title, button } => native::popup_msg(title, msg, button),
             IosAlert::Dialog {
                 msg,
                 title,
                 button_yes,
                 button_no,
-            } => native::popup_dialog(msg, title, button_yes, button_no),
+            } => native::popup_dialog(title, msg, button_yes, button_no),
             IosAlert::Input {
                 msg,
                 title,
                 button,
                 placeholder,
-            } => native::popup_input(msg, title, button, placeholder),
+            } => native::popup_input(title, msg, button, placeholder),
             IosAlert::Dismiss => native::popup_dismiss_current(),
         }
     }

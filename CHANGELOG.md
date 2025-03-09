@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixes
+* title and msg where swapped ([#3](https://github.com/rustunit/bevy_ios_alerts/issues/3))
+
 ## [0.3.0] - 2024-12-02
 
 ### Changes
