@@ -17,8 +17,6 @@ Rust crate and Swift package to easily integrate iOS's native UIAlerts API into 
 
 demo from our game using this crate: [zoolitaire.com](https://zoolitaire.com)
 
-**See also** [bevy_ios_iap](https://github.com/rustunit/bevy_ios_iap), [bevy_ios_notifications](https://github.com/rustunit/bevy_ios_notifications), [bevy_ios_gamecenter](https://github.com/rustunit/bevy_ios_gamecenter), [bevy_ios_review](https://github.com/rustunit/bevy_ios_review) & [bevy_ios_impact](https://github.com/rustunit/bevy_ios_impact)
-
 ## Instructions
 
 1. Add to XCode: Add SPM (Swift Package Manager) dependency
@@ -39,7 +37,7 @@ cargo add bevy_ios_alerts
 or 
 
 ```
-bevy_ios_alerts = { version = "0.2" }
+bevy_ios_alerts = { version = "0.4" }
 ```
 
 ### 3. Setup Plugin
@@ -98,9 +96,9 @@ fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
 
 ## Bevy version support
 
-|bevy|bevy\_ios\_alerts|
+|bevy|crate|
 |----|---|
-|0.15|0.3,main|
+|0.15|0.3,0.4,main|
 |0.14|0.2|
 |0.13|0.1|
 
