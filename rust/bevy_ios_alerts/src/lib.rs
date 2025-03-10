@@ -5,6 +5,7 @@ mod native_events;
 use bevy::prelude::*;
 
 pub use native_events::IosAlertResponse;
+pub use native_events::IosAlertDialogButton;
 
 #[derive(Resource, Clone, Debug, Default)]
 struct NonSendRes;
