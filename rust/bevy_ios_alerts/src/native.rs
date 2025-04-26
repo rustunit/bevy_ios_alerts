@@ -1,7 +1,7 @@
-#![allow(temporary_cstring_as_ptr)]
+#![allow(dangling_pointers_from_temporaries)]
 
 #[cfg(target_os = "ios")]
-use std::ffi::{c_char, CString};
+use std::ffi::{CString, c_char};
 
 #[cfg(target_os = "ios")]
 extern "C" {

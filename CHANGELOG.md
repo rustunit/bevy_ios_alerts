@@ -7,12 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## [0.4.1] - 2024-03-11
+## [0.5.0] - 2025-04-26
+
+### Changes
+* Support Bevy `0.16`
+
+## [0.4.1] - 2025-03-11
 
 ### Added
 * expose `IosAlertDialogButton` ([#5](https://github.com/rustunit/bevy_ios_alerts/pull/5))
 
-## [0.4.0] - 2024-03-10
+## [0.4.0] - 2025-03-10
 
 ### Fixes
 * title and msg were swapped ([#3](https://github.com/rustunit/bevy_ios_alerts/issues/3))

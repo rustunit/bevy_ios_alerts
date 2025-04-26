@@ -32,9 +32,9 @@ Go to `File` -> `Add Package Dependencies` and paste `https://github.com/rustuni
 
 ```
 cargo add bevy_ios_alerts
-``` 
+```
 
-or 
+or
 
 ```
 bevy_ios_alerts = { version = "0.4" }
@@ -52,20 +52,20 @@ Trigger Alert in your application code:
 
 ```rust
 fn system_triggerin_alerts(mut events: EventWriter<IosAlert>) {
-     
+
     events.send(IosAlert::Message {
         title: String::from("title"),
         msg: String::from("msg"),
         button: String::from("ok"),
     });
-     
+
     events.send(IosAlert::Dialog {
         title: String::from("title"),
         msg: String::from("this is a dialog with multiple buttons"),
         button_yes: String::from("absolutely yes"),
         button_no: String::from("no no no"),
     });
-                    
+
     events.send(IosAlert::Input {
         title: String::from("title"),
         msg: String::from("input box"),
@@ -98,7 +98,8 @@ fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
 
 |bevy|crate|
 |----|---|
-|0.15|0.3,0.4,main|
+|0.16|0.5,main|
+|0.15|0.3,0.4|
 |0.14|0.2|
 |0.13|0.1|
 
