@@ -1,0 +1,8 @@
+check:
+    cargo c
+    cargo c --target aarch64-apple-ios
+    cargo fmt -- --check
+    cargo clippy
+
+publish:
+    cargo publish

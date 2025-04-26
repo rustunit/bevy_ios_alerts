@@ -1,6 +1,6 @@
 #[cfg(target_os = "ios")]
 use std::{
-    ffi::{CStr, c_char, c_uchar},
+    ffi::{c_char, c_uchar, CStr},
     sync::OnceLock,
 };
 
