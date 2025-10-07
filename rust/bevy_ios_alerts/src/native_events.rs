@@ -15,7 +15,7 @@ pub enum IosAlertDialogButton {
     No,
 }
 
-#[derive(Event, Clone, Debug)]
+#[derive(Message, Clone, Debug)]
 pub enum IosAlertResponse {
     MessageConfirm,
     Dialog(IosAlertDialogButton),

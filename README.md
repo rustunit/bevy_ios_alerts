@@ -37,7 +37,7 @@ cargo add bevy_ios_alerts
 or
 
 ```
-bevy_ios_alerts = { version = "0.4" }
+bevy_ios_alerts = { version = "0.5" }
 ```
 
 ### 3. Setup Plugin
@@ -51,7 +51,7 @@ app.add_plugins(bevy_ios_alerts::IosAlertsPlugin);
 Trigger Alert in your application code:
 
 ```rust
-fn system_triggerin_alerts(mut events: EventWriter<IosAlert>) {
+fn system_triggerin_alerts(mut events: MessageWriter<IosAlert>) {
 
     events.send(IosAlert::Message {
         title: String::from("title"),
@@ -74,7 +74,7 @@ fn system_triggerin_alerts(mut events: EventWriter<IosAlert>) {
     });
 }
 
-fn process_alert_response(mut events: EventReader<IosAlertResponse>) {
+fn process_alert_response(mut events: MessageReader<IosAlertResponse>) {
     for e in events.read() {
         info!("incoming alert response: {e:?}");
     }

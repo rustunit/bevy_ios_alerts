@@ -1,5 +1,4 @@
 mod native;
-
 mod native_events;
 
 use bevy::prelude::*;
@@ -9,7 +8,7 @@ pub use native_events::{IosAlertDialogButton, IosAlertResponse};
 #[derive(Resource, Clone, Debug, Default)]
 struct NonSendRes;
 
-#[derive(Event, Clone, Debug)]
+#[derive(Message, Clone, Debug)]
 pub enum IosAlert {
     Message {
         msg: String,
@@ -35,13 +34,13 @@ pub struct IosAlertsPlugin;
 
 impl Plugin for IosAlertsPlugin {
     fn build(&self, app: &mut App) {
-        app.add_event::<IosAlert>()
+        app.add_message::<IosAlert>()
             .init_non_send_resource::<NonSendRes>()
-            .add_systems(Update, process_events.run_if(on_event::<IosAlert>));
+            .add_systems(Update, process_events.run_if(on_message::<IosAlert>));
 
         #[cfg(not(target_os = "ios"))]
         {
-            app.add_event::<IosAlertResponse>();
+            app.add_message::<IosAlertResponse>();
         }
 
         #[cfg(target_os = "ios")]
@@ -61,7 +60,7 @@ impl Plugin for IosAlertsPlugin {
     }
 }
 
-fn process_events(mut events: EventReader<IosAlert>, _main_thread: NonSend<NonSendRes>) {
+fn process_events(mut events: MessageReader<IosAlert>, _main_thread: NonSend<NonSendRes>) {
     while let Some(e) = events.read().next() {
         match e {
             IosAlert::Message { msg, title, button } => native::popup_msg(title, msg, button),
