@@ -45,13 +45,13 @@ impl Plugin for IosAlertsPlugin {
 
         #[cfg(target_os = "ios")]
         {
-            use bevy_crossbeam_event::{CrossbeamEventApp, CrossbeamEventSender};
+            use bevy_channel_message::{ChannelMessageApp, ChannelMessageSender};
 
-            app.add_crossbeam_event::<IosAlertResponse>();
+            app.add_channel_message::<IosAlertResponse>();
 
             let sender = app
                 .world()
-                .get_resource::<CrossbeamEventSender<IosAlertResponse>>()
+                .get_resource::<ChannelMessageSender<IosAlertResponse>>()
                 .unwrap()
                 .clone();
 
