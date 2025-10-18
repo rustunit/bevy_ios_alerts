@@ -7,7 +7,7 @@ use std::{
 use bevy::prelude::*;
 
 #[cfg(target_os = "ios")]
-use bevy_crossbeam_event::CrossbeamEventSender;
+use bevy_channel_message::ChannelMessageSender;
 
 #[derive(Clone, Debug)]
 pub enum IosAlertDialogButton {
@@ -15,7 +15,7 @@ pub enum IosAlertDialogButton {
     No,
 }
 
-#[derive(Event, Clone, Debug)]
+#[derive(Message, Clone, Debug)]
 pub enum IosAlertResponse {
     MessageConfirm,
     Dialog(IosAlertDialogButton),
@@ -23,10 +23,10 @@ pub enum IosAlertResponse {
 }
 
 #[cfg(target_os = "ios")]
-static SENDER: OnceLock<Option<CrossbeamEventSender<IosAlertResponse>>> = OnceLock::new();
+static SENDER: OnceLock<Option<ChannelMessageSender<IosAlertResponse>>> = OnceLock::new();
 
 #[cfg(target_os = "ios")]
-pub fn set_sender(sender: CrossbeamEventSender<IosAlertResponse>) {
+pub fn set_sender(sender: ChannelMessageSender<IosAlertResponse>) {
     while !SENDER.set(Some(sender.clone())).is_ok() {}
 }
 
