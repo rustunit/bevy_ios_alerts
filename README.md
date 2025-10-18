@@ -37,7 +37,7 @@ cargo add bevy_ios_alerts
 or
 
 ```
-bevy_ios_alerts = { version = "0.5" }
+bevy_ios_alerts = { version = "0.6" }
 ```
 
 ### 3. Setup Plugin
@@ -98,7 +98,8 @@ fn process_alert_response(mut events: MessageReader<IosAlertResponse>) {
 
 |bevy|crate|
 |----|---|
-|0.16|0.5,main|
+|0.17|0.6,main|
+|0.16|0.5|
 |0.15|0.3,0.4|
 |0.14|0.2|
 |0.13|0.1|
