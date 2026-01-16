@@ -1,6 +1,6 @@
 #[cfg(target_os = "ios")]
 use std::{
-    ffi::{c_char, c_uchar, CStr},
+    ffi::{CStr, c_char, c_uchar},
     sync::OnceLock,
 };
 
@@ -31,7 +31,7 @@ pub fn set_sender(sender: ChannelMessageSender<IosAlertResponse>) {
 }
 
 #[cfg(target_os = "ios")]
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn popup_message_click() {
     SENDER
         .get()
@@ -42,7 +42,7 @@ pub unsafe extern "C" fn popup_message_click() {
 }
 
 #[cfg(target_os = "ios")]
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn popup_dialog_click(button: c_uchar) {
     SENDER
         .get()
@@ -57,14 +57,14 @@ pub unsafe extern "C" fn popup_dialog_click(button: c_uchar) {
 }
 
 #[cfg(target_os = "ios")]
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn popup_input_click(text: *const c_char) {
     SENDER
         .get()
         .unwrap()
         .as_ref()
         .unwrap()
-        .send(IosAlertResponse::Input(
-            CStr::from_ptr(text).to_str().unwrap().to_string(),
-        ));
+        .send(IosAlertResponse::Input(unsafe {
+            CStr::from_ptr(text).to_str().unwrap().to_string()
+        }));
 }

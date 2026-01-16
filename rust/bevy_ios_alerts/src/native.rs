@@ -1,10 +1,10 @@
 #![allow(dangling_pointers_from_temporaries)]
 
 #[cfg(target_os = "ios")]
-use std::ffi::{c_char, CString};
+use std::ffi::{CString, c_char};
 
 #[cfg(target_os = "ios")]
-extern "C" {
+unsafe extern "C" {
     pub fn ios_popup_message(title: *const c_char, msg: *const c_char, button: *const c_char);
     pub fn ios_popup_dialog(
         title: *const c_char,
