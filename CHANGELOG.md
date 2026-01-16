@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.7.1] - 2026-01-16
+
 ### Changes
 * rust 2024 migration
+* depend on granular bevy_* crates
 
 ## [0.7.0] - 2026-01-16
 

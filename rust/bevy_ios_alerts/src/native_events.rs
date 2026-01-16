@@ -4,7 +4,7 @@ use std::{
     sync::OnceLock,
 };
 
-use bevy::prelude::*;
+use bevy_ecs::prelude::*;
 
 #[cfg(target_os = "ios")]
 use bevy_channel_message::ChannelMessageSender;

@@ -1,7 +1,8 @@
 mod native;
 mod native_events;
 
-use bevy::prelude::*;
+use bevy_app::prelude::*;
+use bevy_ecs::prelude::*;
 
 pub use native_events::{IosAlertDialogButton, IosAlertResponse};
 
