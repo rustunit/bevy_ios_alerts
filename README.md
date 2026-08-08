@@ -94,8 +94,7 @@ fn process_alert_response(mut events: MessageReader<IosAlertResponse>) {
 
 |bevy|crate|
 |----|---|
-|0.18|0.8,main|
-|0.18|0.7|
+|0.18|0.7,0.8,main|
 |0.17|0.6|
 |0.16|0.5|
 |0.15|0.3,0.4|
