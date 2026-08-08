@@ -1,14 +1,14 @@
+#[cfg(target_os = "ios")]
 mod native;
-mod native_events;
 
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
 
-pub use native_events::{IosAlertDialogButton, IosAlertResponse};
-
 #[derive(Resource, Clone, Debug, Default)]
 struct NonSendRes;
 
+/// Request a native alert popup. Every variant but [`IosAlert::Dismiss`] is answered with an
+/// [`IosAlertResponse`].
 #[derive(Message, Clone, Debug)]
 pub enum IosAlert {
     Message {
@@ -29,6 +29,20 @@ pub enum IosAlert {
         placeholder: String,
     },
     Dismiss,
+}
+
+#[derive(Clone, Debug)]
+pub enum IosAlertDialogButton {
+    Yes,
+    No,
+}
+
+/// Sent once the user dismissed an alert requested via [`IosAlert`].
+#[derive(Message, Clone, Debug)]
+pub enum IosAlertResponse {
+    MessageConfirm,
+    Dialog(IosAlertDialogButton),
+    Input(String),
 }
 
 pub struct IosAlertsPlugin;
@@ -56,28 +70,17 @@ impl Plugin for IosAlertsPlugin {
                 .unwrap()
                 .clone();
 
-            native_events::set_sender(sender);
+            native::set_sender(sender);
         }
     }
 }
 
+// `NonSend` to keep this on the main thread - UIKit is main-thread only.
 fn process_events(mut events: MessageReader<IosAlert>, _main_thread: NonSend<NonSendRes>) {
-    while let Some(e) = events.read().next() {
-        match e {
-            IosAlert::Message { msg, title, button } => native::popup_msg(title, msg, button),
-            IosAlert::Dialog {
-                msg,
-                title,
-                button_yes,
-                button_no,
-            } => native::popup_dialog(title, msg, button_yes, button_no),
-            IosAlert::Input {
-                msg,
-                title,
-                button,
-                placeholder,
-            } => native::popup_input(title, msg, button, placeholder),
-            IosAlert::Dismiss => native::popup_dismiss_current(),
-        }
+    for e in events.read() {
+        #[cfg(target_os = "ios")]
+        native::show(e);
+        #[cfg(not(target_os = "ios"))]
+        let _ = e;
     }
 }

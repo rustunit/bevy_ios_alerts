@@ -11,7 +11,9 @@
 [sh_discord]: https://img.shields.io/discord/1176858176897953872?label=discord&color=5561E6
 [lk_discord]: https://discord.gg/rQNeEnMhus
 
-Rust crate and Swift package to easily integrate iOS's native UIAlerts API into a Bevy application.
+Bevy plugin to easily integrate iOS's native UIAlerts API into a Bevy application.
+
+Talks to `UIKit` directly via [objc2](https://github.com/madsmtm/objc2) - no Swift package or XCode setup required.
 
 ![demo](./assets/demo.gif)
 
@@ -19,16 +21,10 @@ demo from our game using this crate: [zoolitaire.com](https://zoolitaire.com)
 
 ## Instructions
 
-1. Add to XCode: Add SPM (Swift Package Manager) dependency
-2. Add Rust dependency
-3. Setup Plugin
+1. Add Rust dependency
+2. Setup Plugin
 
-### 1. Add to XCode
-
-Go to `File` -> `Add Package Dependencies` and paste `https://github.com/rustunit/bevy_ios_alerts.git` into the search bar on the top right:
-![xcode](./assets/xcode-spm.png)
-
-### 2. Add Rust dependency
+### 1. Add Rust dependency
 
 ```
 cargo add bevy_ios_alerts
@@ -37,10 +33,10 @@ cargo add bevy_ios_alerts
 or
 
 ```
-bevy_ios_alerts = { version = "0.7" }
+bevy_ios_alerts = { version = "0.8" }
 ```
 
-### 3. Setup Plugin
+### 2. Setup Plugin
 
 Initialize Bevy Plugin:
 
@@ -98,7 +94,7 @@ fn process_alert_response(mut events: MessageReader<IosAlertResponse>) {
 
 |bevy|crate|
 |----|---|
-|0.18|0.7,main|
+|0.18|0.7,0.8,main|
 |0.17|0.6|
 |0.16|0.5|
 |0.15|0.3,0.4|
