@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## [0.8.0] - 2026-01-16
+## [0.8.0] - 2026-08-08
 
 ### Changed
 * call `UIKit` directly via `objc2`, the Swift package dependency is gone, the XCode setup step (SPM package) is no longer needed.
