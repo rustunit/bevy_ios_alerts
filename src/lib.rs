@@ -50,7 +50,7 @@ pub struct IosAlertsPlugin;
 impl Plugin for IosAlertsPlugin {
     fn build(&self, app: &mut App) {
         app.add_message::<IosAlert>()
-            .init_non_send_resource::<NonSendRes>()
+            .init_non_send::<NonSendRes>()
             .add_systems(Update, process_events.run_if(on_message::<IosAlert>));
 
         #[cfg(not(target_os = "ios"))]

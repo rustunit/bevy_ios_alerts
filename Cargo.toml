@@ -1,6 +1,6 @@
 [package]
 name = "bevy_ios_alerts"
-version = "0.8.0"
+version = "0.9.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -14,12 +14,12 @@ description = "Bevy plugin to request ios native UIAlert popups"
 default-target = "x86_64-apple-darwin"
 
 [dependencies]
-bevy_ecs = { version = "0.18", default-features = false }
-bevy_app = { version = "0.18", default-features = false }
+bevy_ecs = { version = "0.19", default-features = false }
+bevy_app = { version = "0.19", default-features = false }
 
 [target.'cfg(target_os = "ios")'.dependencies]
-bevy_channel_message = "0.2"
-bevy_log = { version = "0.18", default-features = false }
+bevy_channel_message = "0.3"
+bevy_log = { version = "0.19", default-features = false }
 objc2 = { version = "0.6", default-features = false, features = ["std"] }
 block2 = { version = "0.6", default-features = false, features = ["std"] }
 objc2-foundation = { version = "0.3", default-features = false, features = [
